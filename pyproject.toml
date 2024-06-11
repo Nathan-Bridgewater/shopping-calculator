@@ -1,0 +1,18 @@
+[project]
+name = "example_package_nathan_bridgewater"
+version = "0.0.1"
+authors = [
+  { name="Nathan Bridgewater", email="author@example.com" }
+]
+description = "A small package example"
+readme = "README.md"
+requires-python = ">=3.12.3"
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
