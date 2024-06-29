@@ -11,11 +11,16 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+data "local_file" "public_ssh_key" {
+  filename = "../../../my-ssh-key.pub"
+}
+
 resource "aws_instance" "web_server" {
   ami = data.aws_ami.amazon_linux
   instance_type = "t3.micro"
 }
 
-# resource "aws_key_pair" "web_server_key_pair" {
-  
-# }
+resource "aws_key_pair" "web_server_key_pair" {
+  key_name = "web-server-key"
+  public_key = data.local_file.public_ssh_key.content 
+}
