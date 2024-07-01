@@ -1,2 +1,4 @@
 my-ssh*
 *.terraform
+terraform.tfstate*
+
