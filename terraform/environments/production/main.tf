@@ -26,13 +26,30 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   cidr_ipv4 = "0.0.0.0/0"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_tls" {
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   security_group_id = aws_security_group.security_group.id
   ip_protocol = "tcp"
   from_port = 443
   to_port = 443
   cidr_ipv4 = "0.0.0.0/0"
 }
+
+resource "aws_vpc_security_group_egress_rule" "allow_http" {
+  security_group_id = aws_security_group.security_group.id
+  ip_protocol = "tcp"
+  from_port = 80
+  to_port = 80
+  cidr_ipv4 = "0.0.0.0/0"
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_https" {
+  security_group_id = aws_security_group.security_group.id
+  ip_protocol = "tcp"
+  from_port = 443
+  to_port = 443
+  cidr_ipv4 = "0.0.0.0/0"
+}
+
 
 resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.main_vpc.id
