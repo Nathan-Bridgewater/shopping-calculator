@@ -2,3 +2,5 @@ my-ssh*
 .terraform*
 terraform.tfstate*
 .terraform.lock.hcl
+ui/venv
+
