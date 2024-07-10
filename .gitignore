@@ -3,4 +3,5 @@ my-ssh*
 terraform.tfstate*
 .terraform.lock.hcl
 ui/venv
+ui/app/__pycache__
 
