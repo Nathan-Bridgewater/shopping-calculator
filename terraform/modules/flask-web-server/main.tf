@@ -10,6 +10,10 @@ data "aws_ami" "amazon_linux" {
 data "local_file" "public_ssh_key" {
   filename = "../../../my-ssh-key.pub"
 }
+
+data "local_file" "user_data" {
+  filename = "../../modules/flask-web-server/user-data.sh"
+}
 resource "aws_key_pair" "web_server_key_pair" {
   key_name = "web-server-key"
   public_key = data.local_file.public_ssh_key.content 
@@ -22,4 +26,5 @@ resource "aws_instance" "web_server" {
   subnet_id = var.instance_subnet_id
   associate_public_ip_address = true
   security_groups = [ var.security_group_id ]
+  user_data = data.local_file.user_data.content
 }

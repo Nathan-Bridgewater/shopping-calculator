@@ -34,11 +34,19 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   cidr_ipv4 = var.allowed_ingress_ip
 }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_http" {
+  security_group_id = aws_security_group.security_group.id
+  ip_protocol = "tcp"
+  from_port = 8080
+  to_port = 8080
+  cidr_ipv4 = var.allowed_ingress_ip
+}
+
 resource "aws_vpc_security_group_egress_rule" "allow_http" {
   security_group_id = aws_security_group.security_group.id
   ip_protocol = "tcp"
-  from_port = 80
-  to_port = 80
+  from_port = 8080
+  to_port = 8080
   cidr_ipv4 = var.allowed_ingress_ip
 }
 
@@ -68,4 +76,9 @@ resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
   cidr_block = "10.0.0.0/24"
   availability_zone = var.public_subnet_az
+}
+
+resource "aws_ecr_repository" "ecr_repo" {
+  name = "flask-app"
+  image_tag_mutability = "MUTABLE"
 }
