@@ -15,5 +15,7 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload():
+  print('YOOO')
   receipt = request.files['receipt']
+  app.logger.info(receipt)
   return redirect(url_for('index'))

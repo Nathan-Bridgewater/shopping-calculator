@@ -1,0 +1,1 @@
+variable "python_runtime" { default = "python3.12"}

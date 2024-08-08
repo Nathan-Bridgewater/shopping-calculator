@@ -4,4 +4,7 @@ terraform.tfstate*
 .terraform.lock.hcl
 ui/venv
 ui/app/__pycache__
+.DS_Store
+ocr-lambda.zip
+
 

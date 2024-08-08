@@ -11,3 +11,7 @@ module "flask_web_server" {
   instance_type = var.instance_type
   security_group_id = module.core_platform.security_group_id
 }
+
+module "lambda_apigw" {
+  source = "../../modules/lambda-apigw"
+}
